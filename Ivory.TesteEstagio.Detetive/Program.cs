@@ -18,53 +18,63 @@ namespace Ivory.TesteEstagio.Detetive
             int local;
             int arma;
             int resposta;
+            int finalizar = 1;
+
+
 
             do
             {
                 //Coletar o SUSPEITO escolhido pelo jogador
-                Console.WriteLine("Escolha o SUSPEITO do crime.: ");
-                Console.WriteLine("1 - Advogado Sr. Marinho\n" +
-                    "2 - Chef. de Cozinha Tony Gourmet\n" +
-                    "3 - Coveiro Sérgio Sortuno\n" +
-                    "4 - Dançarina Srta. Rosa\n" +
-                    "5 - Florista Dona Branca\n" +
-                    "6 - Médica Dona Violeta\n" +
-                    "7 - Mordomo James\n" +
-                    "8 - Sargento Bigode\n");
+                Helpers.Helpers.PerguntaSuspeito();
 
                 suspeito = int.Parse(Console.ReadLine());
+                while (suspeito < 1 || suspeito > 8)
+                {
+                    Console.WriteLine("ATENCÃO: Suas opções são de 1 a 8!" +
+                        "\nPrecione qualquer tecla para continuar...\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Helpers.Helpers.PerguntaSuspeito();
+                    suspeito = int.Parse(Console.ReadLine());
+                }
                 Console.Clear();
 
                 //Coletar o LOCAL escolhido pelo jogador
-                Console.WriteLine("Escolha o LOCAL do crime.: ");
-                Console.WriteLine("1 - Biblioteca\n" +
-                    "2 - Cozinha\n" +
-                    "3 - Hall\n" +
-                    "4 - Escritório\n" +
-                    "5 - Sala de estar\n" +
-                    "6 - Sala de jantar\n" +
-                    "7 - Sala de música\n" +
-                    "8 - Salão de festas\n" + 
-                    "9 - Salão de Jogos\n");
+                Helpers.Helpers.PerguntaLocal();
 
                 local = int.Parse(Console.ReadLine());
+                while (local < 1 || local > 9)
+                {
+                    Console.WriteLine("ATENCÃO: Suas opções são de 1 a 9!" +
+                        "\nPrecione qualquer tecla para continuar...\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Helpers.Helpers.PerguntaLocal();
+                    local = int.Parse(Console.ReadLine());
+                }
                 Console.Clear();
 
                 //Coletar o ARMA escolhido pelo jogador
-                Console.WriteLine("Escolha a ARMA do crime.: ");
-                Console.WriteLine("1 - Castiçal\n" +
-                    "2 - Cano\n" +
-                    "3 - Chave inglesa\n" +
-                    "4 - Corda\n" +
-                    "5 - Revólver\n" +
-                    "6 - Faca\n");
+                Helpers.Helpers.PerguntaArma();
 
                 arma = int.Parse(Console.ReadLine());
+                while (arma < 1 || arma > 6)
+                {
+                    Console.WriteLine("ATENCÃO: Suas opções são de 1 a 6!" +
+                        "\nPrecione qualquer tecla para continuar...\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Helpers.Helpers.PerguntaArma();
+                    arma = int.Parse(Console.ReadLine());
+                }
                 Console.Clear();
 
                 //Exibe as opções escolhidas pelo jogador
                 Console.WriteLine("Escolhidos: \n" +
-                    "Suspeito: " + suspeito + " - Local: " + local + " - Arma: " + arma);
+                    "Suspeito: " + suspeito + " - " + Helpers.Helpers.RetornaSuspeito(suspeito) +
+                    "\nLocal: " + local + " - " + Helpers.Helpers.RetornaLocal(local) +
+                    "\nArma: " + arma + " - " + Helpers.Helpers.RetornaArma(arma)
+                    );
 
                 resposta = testemunha.Interrogar(suspeito, local, arma);
 
@@ -76,20 +86,29 @@ namespace Ivory.TesteEstagio.Detetive
                 if (resposta != 0)
                 {
                     Console.WriteLine("\n\nResposta.: " + Helpers.Helpers.VerificaResposta(resposta));
-                    Console.ReadKey();
+                    Console.WriteLine("\nDigite 1 para continuar ou 0 para finalizar");
+                    finalizar = int.Parse(Console.ReadLine());
+                    while (finalizar < 0 || finalizar > 1)
+                    {
+                        Console.WriteLine("ATENCÃO: Suas opções são de 1 a 0!");
+                        Console.WriteLine("\nDigite 1 para continuar ou 0 para finalizar");
+                        finalizar = int.Parse(Console.ReadLine());
+                    }
+
                     Console.Clear();
-                } else
+                }
+                else
                 {
                     Console.WriteLine("\n\nResposta.: " + Helpers.Helpers.VerificaResposta(resposta));
                     Console.WriteLine("Número de Tentativas: " + testemunha.ObterNumeroInterogatoriosRealizados());
+                    Console.WriteLine("\nPressione qualquer tecla finalizar...");
                     Console.ReadKey();
                     Console.Clear();
                 }
-                
+            } while (resposta != 0 && finalizar != 0);
 
-            } while (resposta != 0);
-
-                        
         }
+
+        
     }
 }
