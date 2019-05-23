@@ -34,6 +34,7 @@ namespace Ivory.TesteEstagio.Detetive.Helpers
             return resposta;
         }
 
+        //Método retorna o suspeito selecionado
         public static string RetornaSuspeito(int _suspeito)
         {
             string resposta = "";
@@ -68,6 +69,7 @@ namespace Ivory.TesteEstagio.Detetive.Helpers
             return resposta;
         }
 
+        //Método retorna o local selecionado
         public static string RetornaLocal(int _local)
         {
             string resposta = "";
@@ -105,6 +107,7 @@ namespace Ivory.TesteEstagio.Detetive.Helpers
             return resposta;
         }
 
+        //Método retorna arma selecionado
         public static string RetornaArma(int _arma)
         {
             string resposta = "";
@@ -133,6 +136,7 @@ namespace Ivory.TesteEstagio.Detetive.Helpers
             return resposta;
         }
 
+        //Método responsável pela pergunta do suspeito
         public static void PerguntaSuspeito()
         {
             Console.WriteLine("Digite o número do SUSPEITO do crime.: ");
@@ -146,6 +150,7 @@ namespace Ivory.TesteEstagio.Detetive.Helpers
                 "8 - Sargento Bigode\n");
         }
 
+        //Método responsável pela pergunta do local
         public static void PerguntaLocal()
         {
             Console.WriteLine("Digite o número do LOCAL do crime.: ");
@@ -160,6 +165,7 @@ namespace Ivory.TesteEstagio.Detetive.Helpers
                 "9 - Salão de Jogos\n");
         }
 
+        //Método responsável pela pergunta da arma
         public static void PerguntaArma()
         {
             Console.WriteLine("Digite o número da ARMA do crime.: ");
@@ -171,5 +177,6 @@ namespace Ivory.TesteEstagio.Detetive.Helpers
                 "6 - Faca\n");
         }
 
+        
     }
 }
